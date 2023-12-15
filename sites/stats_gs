@@ -1,0 +1,9 @@
+server {
+  listen 80;
+  server_name stats.gs *.stats.gs;
+
+  client_max_body_size 16M;
+  keepalive_timeout 10;
+  rewrite '^/r.*' https://www.gosquared.com/analytics/?utm_campaign=badge permanent;
+  return 301 https://www.gosquared.com/analytics$request_uri;
+}

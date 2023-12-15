@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  server_name rabbitmq-admin.gosquared.com;
+
+  client_max_body_size 16M;
+  keepalive_timeout 10;
+  add_header Strict-Transport-Security max-age=31536000;
+
+  location / {
+    proxy_pass http://10.0.130.191:15672;
+  }
+}

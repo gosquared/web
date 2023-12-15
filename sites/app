@@ -1,0 +1,13 @@
+server {
+  listen 80;
+  server_name gosquared.app *.gosquared.app;
+
+  client_max_body_size 16M;
+  keepalive_timeout 10;
+  set $itunes "https://itunes.apple.com/app/inbox-live-chat-by-gosquared/id1069741072?mt=8";
+  set $android "https://play.google.com/store/apps/details?id=com.gosquared.inbox&hl=en_GB&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1";
+  set $redir "https://www.gosquared.com/apps/";
+  if ($http_user_agent ~ "Android") { set $redir $android; }
+  if ($http_user_agent ~* "iPhone|iPad|iPod") { set $redir $itunes; }
+  return 301 $redir;
+}

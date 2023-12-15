@@ -1,0 +1,421 @@
+server {
+  listen 80;
+  server_name www.gosquared.com www-origin.gosquared.com;
+
+  client_max_body_size 16M;
+  keepalive_timeout 10;
+  set $root_host www.gosquared.com;
+  deny 3.9.159.166/32;
+deny 5.39.42.71/32;
+deny 5.188.62.117/32;
+deny 8.38.88.24/32;
+deny 24.133.187.141/32;
+deny 37.59.178.111/32;
+deny 42.51.216.29/32;
+deny 45.74.0.179/32;
+deny 46.35.193.12/32;
+deny 52.91.154.107/32;
+deny 54.93.254.143/32;
+deny 59.188.30.116/32;
+deny 64.71.73.187/32;
+deny 64.71.78.230/32;
+deny 89.22.179.151/32;
+deny 92.38.162.20/32;
+deny 103.22.250.194/32;
+deny 104.167.2.40/32;
+deny 109.61.136.89/32;
+deny 115.28.28.62/32;
+deny 115.28.44.252/32;
+deny 116.50.138.0/24;
+deny 118.123.11.138/32;
+deny 121.42.52.27/32;
+deny 121.42.138.121/32;
+deny 120.27.103.132/32;
+deny 132.148.146.230/32;
+deny 132.148.157.66/32;
+deny 139.59.73.82/32;
+deny 139.99.99.52/32;
+deny 139.129.130.253/32;
+deny 139.199.23.41/32;
+deny 140.143.90.193/32;
+deny 157.230.153.203/32;
+deny 163.172.225.224/32;
+deny 166.62.88.48/32;
+deny 176.8.91.190/32;
+deny 176.31.166.242/32;
+deny 177.97.105.71/32;
+deny 182.254.129.82/32;
+deny 185.234.218.74/32;
+deny 187.163.200.252/32;
+deny 188.166.18.69/32;
+deny 192.227.76.66/32;
+deny 192.227.86.113/32;
+deny 192.227.105.219/32;
+deny 194.187.249.44/32;
+deny 201.18.18.173/32;
+deny 221.235.184.101/32;
+deny 160.119.253.149/32;
+deny 5.181.158.2/32;
+  rewrite ^/dashboard(.*)$ https://$root_host/now$1 permanent;
+  rewrite ^/cp/signin.php https://$root_host/login permanent;
+  rewrite ^/cp/signin https://$root_host/login permanent;
+  rewrite ^/signin https://$root_host/login permanent;
+  rewrite ^/login.php https://$root_host/login permanent;
+  rewrite ^/signout https://$root_host/logout permanent;
+  rewrite ^/logout.php https://$root_host/logout permanent;
+  rewrite ^/cp/reset_pass https://$root_host/reset permanent;
+  rewrite ^/(gold|edition) https://$root_host/april/edition permanent;
+  rewrite ^/(home|express)/details         https://$root_host/settings/personal permanent;
+  rewrite ^/(home|express)/developer       https://$root_host/integration permanent;
+  rewrite ^/(home|express)/account         https://$root_host/settings/plans permanent;
+  rewrite ^/(home|express)/account/details https://$root_host/settings/billing permanent;
+  rewrite ^/(home|express)/welcome         https://$root_host/welcome/begin permanent;
+  rewrite ^/activate https://$root_host/support/articles/1604607-introduction-to-gosquared permanent;
+  rewrite ^/api https://$root_host/developer permanent;
+  rewrite '^/eleven2/([0-9]+|GSN-[0-9]{6,7}-[A-Z])/([a-zA-Z0-9]{8,})/keys.gs$' https://$root_host/admin/eleven2/key.gs?key=$2&a=$1 break;
+  rewrite ^/engines/eleven2.php(.*)$ https://$root_host/admin/eleven2/key.gs$1 permanent;
+  rewrite ^/r/([A-Za-z0-9+/]+)$ /admin/referral/$1 break;
+  rewrite ^/grow https://$root_host/build permanent;
+  rewrite ^/smartgroups https://$root_host/build permanent;
+  rewrite ^/user-smartgroups https://$root_host/build permanent;
+  rewrite ^/bonus-profiles https://$root_host/ permanent;
+  rewrite ^/(join|join/[^/]+|wix/complete)$ https://$root_host/$1/ permanent;
+  rewrite ^/🥚 https://easter-eg.gs/04/fa8fb3d4fa77c5e25600391309fb7ec3f549c0452d3dc488fd315e41b661d215/ permanent;
+  rewrite ^/egg https://easter-eg.gs/04/fa8fb3d4fa77c5e25600391309fb7ec3f549c0452d3dc488fd315e41b661d215/ permanent;
+  rewrite ^/customer/en/portal(.*)$ https://$root_host/support$1 permanent;
+  rewrite ^/customer/portal(.*)$ https://$root_host/support$1 permanent;
+  rewrite ^/software/integrations$ https://$root_host/integrations/ permanent;
+  rewrite ^/software/integrations(/.*)?$ https://$root_host/integrations$1 permanent;
+  rewrite ^/slack(/.*)?$ https://$root_host/integrations/slack$1 permanent;
+  rewrite ^/plans/grow https://$root_host/plans/ permanent;
+  rewrite ^/software/ecommerce(/.*)?$ https://$root_host/software/analytics/ permanent;
+  rewrite ^/software/now(/.*)?$ https://$root_host/software/analytics/?_hash=now permanent;
+  rewrite ^/software/trends(/.*)?$ https://$root_host/software/analytics/?_hash=trends permanent;
+  rewrite ^/software/chat(/.*)?$ https://$root_host/live-chat$1 permanent;
+  rewrite ^/software/analytics(/.*)?$ https://$root_host/analytics$1 permanent;
+  rewrite ^/software/people(/.*)?$ https://$root_host/customer-data-hub$1 permanent;
+  rewrite ^/crm(/.*)?$ https://$root_host/customer-data-hub$1 permanent;
+  rewrite ^/software/announcements(/.*)?$ https://$root_host/product-announcements$1 permanent;
+  rewrite ^/sofware/ https://$root_host/ permanent;
+  rewrite ^/solutions/ https://$root_host/ permanent;
+  rewrite ^/developer/?$ https://$root_host/docs/ permanent;
+  rewrite ^/developer/api/now/v3/combining-functions https://$root_host/docs/api/combiningFunctions permanent;
+  rewrite ^/developer/api/account/v1/(.*)$  https://$root_host/docs/api/account/$1 permanent;
+  rewrite ^/developer/api/now/v3/(.*)$      https://$root_host/docs/api/now/$1 permanent;
+  rewrite ^/developer/api/trends/v2/(.*)$   https://$root_host/docs/api/trends/$1 permanent;
+  rewrite ^/developer/api/ecommerce/v1/(.*)$   https://$root_host/docs/api/trends/$1 permanent;
+  rewrite ^/developer/api/ecommerce/(.*)$   https://$root_host/docs/api/trends/$1 permanent;
+  rewrite ^/developer/api/clients https://$root_host/docs/api/libraries/ permanent;
+  rewrite ^/developer/api/(.*)$ https://$root_host/docs/api/$1 permanent;
+  rewrite ^/docs/tracking/api/js https://$root_host/docs/api/javascript-tracking-code/ permanent;
+  rewrite ^/docs/tracking/api(/.*)?$ https://$root_host/docs/api/tracking$1 permanent;
+  rewrite ^/docs/api/tracking/js https://$root_host/docs/api/javascript-tracking-code/ permanent;
+  rewrite ^/docs/libraries/.+ https://$root_host/docs/libraries/ permanent;
+  rewrite ^/docs/api/(.*)/(get|post|put|delete)/?$ https://$root_host/docs/api/$1/ permanent;
+  rewrite ^/docs/api/(.*)$ https://$root_host/docs/$1 permanent;
+  rewrite ^/docs/tracking/basic https://$root_host/support/articles/828576 permanent;
+  rewrite ^/docs/tracking/identify https://$root_host/support/articles/1849186 permanent;
+  rewrite ^/docs/tracking/events https://$root_host/support/articles/609683 permanent;
+  rewrite ^/docs/tracking/ecommerce https://$root_host/support/articles/1647685 permanent;
+  rewrite ^/docs/tracking/faq https://$root_host/support/articles/521687 permanent;
+  rewrite ^/developer/tracker/installation https://$root_host/docs/tracking/basic/ permanent;
+  rewrite ^/developer/tracker/configuration https://$root_host/docs/tracking/api/?section=configuration permanent;
+  rewrite ^/developer/tracker/tagging https://$root_host/docs/tracking/identify/ permanent;
+  rewrite ^/developer/tracker/pageviews https://$root_host/docs/tracking/api/?section=pageviews permanent;
+  rewrite ^/developer/tracker/events https://$root_host/docs/tracking/events/ permanent;
+  rewrite ^/developer/tracker/ecommerce https://$root_host/docs/tracking/ecommerce/ permanent;
+  rewrite ^/developer/tracker/troubleshooting https://$root_host/docs/tracking/faq/ permanent;
+  rewrite ^/developer/tracker/plugins https://$root_host/docs/libraries/ permanent;
+  rewrite ^/developer/tracker https://$root_host/docs/tracking/ permanent;
+  rewrite ^/developer/?$ https://$root_host/docs/ permanent;
+  rewrite ^/developer/latest(.*)$ https://$root_host/developer/api/ permanent;
+  rewrite ^/developer/api/legacy$ https://$root_host/developer/api/ permanent;
+  rewrite ^/developer/api/legacy(.*)$ https://$root_host/developer/api/ permanent;
+  rewrite ^/developer/docs/latest(.*)$ https://$root_host/developer/api/ permanent;
+  rewrite ^/developer/docs/v2(.*)$ https://$root_host/developer/api/ permanent;
+  rewrite ^/developer/docs(.*)$ https://$root_host/developer/api$1 permanent;
+  rewrite ^/developer/api/account/v1/ignoredVisitors(.*)$ https://$root_host/developer/api/account/v1/blocked$1 permanent;
+  rewrite ^/features/ecommerce(.*)$ https://$root_host/software/ecommerce$1 permanent;
+  rewrite ^/features/visitors(.*)$ https://$root_host/software/people$1 permanent;
+  rewrite ^/features.*$ https://$root_host/ permanent;
+  rewrite ^/resources/drupal-module/ https://$root_host/support/articles/564411-drupal-module-for-gosquared permanent;
+  rewrite ^/resources/joomla/ https://$root_host/support/articles/564070-joomla-gosquared-installation permanent;
+  rewrite ^/resources/jquery-plugin/ https://$root_host/docs/ permanent;
+  rewrite ^/resources/wordpress-plugin/ https://$root_host/support/articles/558726-wordpress-plugin-for-gosquared permanent;
+  rewrite ^/(?:liquidicity|liquidcity)(.*) https://$root_host/blog$1 permanent;
+  rewrite ^/blog$ /blog/ break;
+  rewrite ^/resources/2400-flags?$ https://$root_host/resources/flag-icons/ permanent;
+  rewrite ^/resources/magento-plugin https://$root_host/support/articles/2162189-magento-and-gosquared permanent;
+  rewrite ^/images/help_sheets/(how_to_pie_01|tut_cake_01) https://$root_host/resources/ permanent;
+  rewrite ^/images/help_sheets/CSS.* https://$root_host/resources/css-cheat-sheet/ permanent;
+  rewrite ^/images/help_sheets/icon_set_arrows_01.ai https://$root_host/resources/64-vector-arrows/ permanent;
+  rewrite ^/customers https://$root_host/customer-engagement/customers/ permanent;
+  rewrite ^/splash https://$root_host/ break;
+  rewrite ^/software/crm https://$root_host/customer-data-hub break;
+  rewrite ^/software https://$root_host/ break;
+  rewrite ^/mission-control https://$root_host/ break;
+  rewrite ^/jobs https://$root_host/careers/ break;
+  rewrite ^/careers/developer.html$ https://$root_host/careers/software-engineer/ permanent;
+  rewrite ^/careers/([^/]+).html$ https://$root_host/careers/$1/ permanent;
+  rewrite ^/join/(premium|joyent|adviseme|groupon|ipad|themes|normal|templatemonster|launchrock|geckoboard|wix|eleven2|ph|early-stage) https://$root_host/join/ permanent;
+  rewrite ^/why/accuracy https://$root_host/analytics/accuracy/ permanent;
+  rewrite ^/why/?$ https://$root_host/reasons/ permanent;
+  rewrite ^/livestats/?$ https://$root_host/analytics/ permanent;
+  rewrite ^/4/ https://$root_host/ permanent;
+  rewrite ^/developer/demo https://$root_host/developer/ permanent;
+  rewrite ^/new/?$ https://$root_host/ permanent;
+  rewrite ^/reasons https://$root_host/ permanent;
+  rewrite ^/stories/(.*)?$ https://$root_host/customers/$1 permanent;
+  rewrite ^/customers/(creativeassembly|browsi|buffalo|hungryhouse|smarkets|squixa) https://$root_host/customers/ permanent;
+  rewrite ^/rocketship https://$root_host/ permanent;
+  rewrite ^/stories https://$root_host/customers/ permanent;
+  rewrite ^/live-chat/widget https://$root_host/assistant/ permanent;
+  rewrite ^/livestats/3D https://$root_host/april/livestats-3d/ permanent;
+  rewrite ^/futurestats https://$root_host/april/futurestats/ permanent;
+  rewrite ^/2012 https://$root_host/london2012/ permanent;
+  rewrite ^/behavioural-qualified-leads https://$root_host/ permanent;
+  rewrite /assistant https://$root_host/live-chat/ permanent;
+  rewrite ^/acquisition https://$root_host/acquire/ permanent;
+  rewrite ^/agencies https://$root_host/support/articles/2844613 permanent;
+  rewrite ^/online-publishers https://$root_host/ permanent;
+  rewrite ^/restart-your-trial https://$root_host/ permanent;
+  rewrite ^/secret-early-stage https://$root_host/ permanent;
+  rewrite ^/build https://$root_host/customer-engagement/ permanent;
+  rewrite ^/early-stage https://$root_host/customer-engagement/plans/ permanent;
+  rewrite ^/new$ https://$root_host/new/ permanent;
+  rewrite ^/learn-more/agencies https://$root_host/agencies/ permanent;
+  rewrite ^/for/agencies https://$root_host/agencies/ permanent;
+  rewrite '^/livestats/mobile/([0-9]+|GSN-[0-9]{6,7}-[A-Z])/?$' https://$root_host/now/$1 permanent;
+  rewrite '^/livestats/([0-9]+|GSN-[0-9]{6,7}-[A-Z])/?$' https://$root_host/now/$1 permanent;
+  rewrite ^/livestats/demo https://$root_host/demo/now permanent;
+  rewrite ^/(now|trends)/demo/tf https://$root_host/demo/$1/tf2 permanent;
+  rewrite ^/(now|trends)/demo/poolga https://$root_host/demo/$1/poolga permanent;
+  rewrite ^/(now|trends|ecommerce)/demo https://$root_host/demo/$1 permanent;
+  rewrite ^/pricing https://$root_host/plans/ permanent;
+  rewrite ^/livestats/plans https://$root_host/plans/ permanent;
+  rewrite ^/plans/(?:standard|plus|pro|extreme|free|premium) https://$root_host/join/ permanent;
+  rewrite ^/plans/(?:analytics|crm|suite) https://$root_host/plans/ permanent;
+  rewrite ^/plans/rapidweaver/ https://$root_host/join/rapidweaver/ permanent;
+  rewrite ^/(signup|freetrial|free-trial|trial) https://$root_host/join/ permanent;
+  rewrite ^/(sitemanager|cp|account) https://$root_host/settings/ permanent;
+  rewrite ^/legal/refunds https://$root_host/legal/billing/ permanent;
+  rewrite ^/legal/privacy/statement.php https://$root_host/legal/privacy/statement/ permanent;
+  rewrite ^/legal/privacy/statement https://$root_host/legal/privacy/ permanent;
+  rewrite ^/legal/billing https://$root_host/legal/terms/ permanent;
+  rewrite ^/365wallpapers https://$root_host/resources/ permanent;
+  rewrite ^/discuss https://$root_host/about/ permanent;
+  rewrite ^/affiliates https://$root_host/about/ permanent;
+  rewrite ^/services https://$root_host/ permanent;
+  rewrite ^/sites https://$root_host/ permanent;
+  rewrite ^/squares https://$root_host/ permanent;
+  rewrite ^/support$ https://$root_host/support/ permanent;
+  rewrite ^/globe/?$ https://$root_host/labs/globe/ permanent;
+  rewrite ^/developer/v1/?$ https://$root_host/developer/ permanent;
+  rewrite ^/download/(.*)$ https://downloads.gosquared.com/$1 permanent;
+  rewrite ^/cf_sso https://$root_host/admin/cfsso permanent;
+  rewrite ^/mavericks https://$root_host/global/mac/mavericks/ permanent;
+  rewrite ^/yosemite https://$root_host/global/mac/yosemite/ permanent;
+  rewrite ^/global https://www.gosquared.com/blog/global-metrics-2023 permanent;
+  rewrite ^(.*)/index.php https://$root_host$1/ permanent;
+  rewrite ^/gdpr(?!-ready) https://$root_host/gdpr-ready/ permanent;
+  rewrite ^/intercalculator https://$root_host/switch/intercom-calculator/ permanent;
+  rewrite ^/indie-hacker-calculator https://$root_host/mrr-calculator/ permanent;
+  rewrite ^/customer-engagement/$ https://www.ecosend.io;
+  rewrite ^/customer-engagement/playbooks/ https://www.ecosend.io;
+  rewrite ^/customer-engagement/plans/ https://www.ecosend.io/plans;
+  rewrite ^/customer-engagement/customers/ https://$root_host/customers/;
+  rewrite ^/join/grow/ https://$root_host/join/ecosend/;
+  rewrite ^/lead-forms/ https://www.ecosend.io/features/forms;
+  rewrite ^/free-email-builder https://www.ecosend.io/free-email-builder;
+  rewrite ^/campaign-url-builder https://www.ecosend.io/campaign-url-builder;
+  error_page 400 403 404 405 @err404;
+  error_page 500 502 503 504 @err500;
+
+  location / {
+    add_header X-Frame-Options SAMEORIGIN always;
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+
+  proxy_ignore_headers Set-Cookie Expires Cache-Control;
+  proxy_hide_header Last-Modified;
+  proxy_hide_header x-amz-id-2;
+  proxy_hide_header x-amz-request-id;
+  proxy_hide_header x-amz-meta-optimized;
+  proxy_hide_header x-amz-meta-s3cmd-attrs;
+
+    proxy_set_header Host gosquared.com;
+    proxy_set_header User-Agent gsnginx-secret-qwlkh23le8fyny/1.0;
+    proxy_intercept_errors on;
+    error_page 403 =404 /error-4xx.html;
+
+    set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+
+  location @err404 {
+    add_header X-Frame-Options SAMEORIGIN always;
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+
+  proxy_ignore_headers Set-Cookie Expires Cache-Control;
+  proxy_hide_header Last-Modified;
+  proxy_hide_header x-amz-id-2;
+  proxy_hide_header x-amz-request-id;
+  proxy_hide_header x-amz-meta-optimized;
+  proxy_hide_header x-amz-meta-s3cmd-attrs;
+
+    proxy_set_header Host gosquared.com;
+    proxy_set_header User-Agent gsnginx-secret-qwlkh23le8fyny/1.0;
+    rewrite ^/.* /error-4xx.html;
+
+    set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+
+  location @err500 {
+    add_header X-Frame-Options SAMEORIGIN always;
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+
+  proxy_ignore_headers Set-Cookie Expires Cache-Control;
+  proxy_hide_header Last-Modified;
+  proxy_hide_header x-amz-id-2;
+  proxy_hide_header x-amz-request-id;
+  proxy_hide_header x-amz-meta-optimized;
+  proxy_hide_header x-amz-meta-s3cmd-attrs;
+
+    proxy_set_header Host gosquared.com;
+    proxy_set_header User-Agent gsnginx-secret-qwlkh23le8fyny/1.0;
+    rewrite ^/.* /error-5xx.html;
+
+    set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+
+  location  ~ ^/(css|js)/ {
+    add_header X-Frame-Options SAMEORIGIN always;
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+
+    proxy_hide_header Access-Control-Allow-Origin;
+    proxy_hide_header Access-Control-Allow-Methods;
+    proxy_hide_header Access-Control-Allow-Headers;
+    proxy_hide_header Access-Control-Allow-Credentials;
+    add_header Access-Control-Allow-Credentials true;
+    add_header Access-Control-Allow-Origin https://www.gosquared.com;
+    add_header Access-Control-Allow-Methods 'OPTIONS, GET';
+    add_header Access-Control-Allow-Headers 'Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, Cookie';
+
+
+  proxy_ignore_headers Set-Cookie Expires Cache-Control;
+  proxy_hide_header Last-Modified;
+  proxy_hide_header x-amz-id-2;
+  proxy_hide_header x-amz-request-id;
+  proxy_hide_header x-amz-meta-optimized;
+  proxy_hide_header x-amz-meta-s3cmd-attrs;
+
+    gzip off;
+    proxy_hide_header Cache-Control;
+    add_header Cache-Control "public, max-age=2592000";
+    proxy_set_header Host gosquared.com;
+    proxy_set_header User-Agent gsnginx-secret-qwlkh23le8fyny/1.0;
+    proxy_intercept_errors on;
+    error_page 403 =404 @err404;
+
+    set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+
+  location  ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
+    gzip off;
+    proxy_intercept_errors on;
+    proxy_set_header Host $root_host;
+
+    proxy_set_header x-forwarded-proto https;
+    proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
+    proxy_pass http://neo;
+
+  }
+
+  location ~ ^/join/aws-marketplace {
+    add_header X-Frame-Options SAMEORIGIN always;
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+    proxy_set_header Host 6zlbxgmoih.execute-api.us-east-1.amazonaws.com;
+    proxy_intercept_errors on;
+    error_page 404 =404 @err404;
+    error_page 500 =500 @err500;
+
+    set $backend_upstream "http://6zlbxgmoih.execute-api.us-east-1.amazonaws.com/prod";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+
+  location /april {
+    add_header X-Frame-Options SAMEORIGIN always;
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+    proxy_ignore_headers Set-Cookie Expires Cache-Control;
+    proxy_hide_header Set-Cookie;
+    proxy_redirect https://gosquared.github.io https://www.gosquared.com;
+    proxy_set_header Host gosquared.github.io;
+    proxy_intercept_errors on;
+
+    set $backend_upstream "https://gosquared.github.io";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+
+  location /labs/_embed {
+
+  add_header Strict-Transport-Security max-age=31536000 always;
+  add_header X-Content-Type-Options nosniff always;
+  add_header X-XSS-Protection "1; mode=block" always;
+
+
+  proxy_ignore_headers Set-Cookie Expires Cache-Control;
+  proxy_hide_header Last-Modified;
+  proxy_hide_header x-amz-id-2;
+  proxy_hide_header x-amz-request-id;
+  proxy_hide_header x-amz-meta-optimized;
+  proxy_hide_header x-amz-meta-s3cmd-attrs;
+
+    proxy_set_header Host gosquared.com;
+    proxy_set_header User-Agent gsnginx-secret-qwlkh23le8fyny/1.0;
+    proxy_intercept_errors on;
+    error_page 403 =404 @err404;
+
+    set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+}

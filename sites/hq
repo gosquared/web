@@ -1,0 +1,24 @@
+server {
+  listen 80;
+  server_name hq.gosquared.com;
+
+  client_max_body_size 16M;
+  keepalive_timeout 10;
+
+
+  location / {
+    add_header Strict-Transport-Security max-age=31536000;
+    proxy_set_header User-Agent gs-nginx-ceeZ2laijaMiephaeC2VahzoocaeS7dooghitheiph3deithe7;
+    proxy_set_header Cache-Control no-cache;
+    proxy_set_header If-Modified-Since "";
+    proxy_set_header If-None-Match "";
+    proxy_hide_header ETag;
+    proxy_intercept_errors on;
+    error_page 404 =200 /index.html;
+
+    set $backend_upstream "http://hq.gosquared.com.s3-website-us-east-1.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+}

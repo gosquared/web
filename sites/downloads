@@ -1,0 +1,17 @@
+server {
+  listen 80;
+  server_name downloads.gosquared.com;
+
+  client_max_body_size 16M;
+  keepalive_timeout 10;
+
+  location / {
+    proxy_hide_header Cache-Control;
+    add_header Cache-Control "public, max-age=3600";
+
+    set $backend_upstream "http://downloads.gosquared.com.s3.amazonaws.com";
+    resolver 10.0.0.2 8.8.8.8 ipv6=off;
+    proxy_pass $backend_upstream;
+
+  }
+}
