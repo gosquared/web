@@ -7,6 +7,6 @@ server {
   add_header Strict-Transport-Security max-age=31536000;
 
   location / {
-    proxy_pass http://10.0.130.191:15672;
+    proxy_pass http://rabbitmq.ec2.gosquared.net:15672;
   }
 }
