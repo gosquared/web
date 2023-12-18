@@ -1,12 +1,7 @@
 server {
-  listen 80;
   server_name snippets.gosquared.com snippets-origin.gosquared.com;
 
-  client_max_body_size 16M;
-  keepalive_timeout 10;
-
   location / {
-
     proxy_hide_header Access-Control-Allow-Origin;
     proxy_hide_header Access-Control-Allow-Methods;
     proxy_hide_header Access-Control-Allow-Headers;
@@ -16,13 +11,7 @@ server {
     add_header Access-Control-Allow-Methods 'OPTIONS, GET';
     add_header Access-Control-Allow-Headers 'Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, Cookie';
 
-
-  proxy_ignore_headers Set-Cookie Expires Cache-Control;
-  proxy_hide_header Last-Modified;
-  proxy_hide_header x-amz-id-2;
-  proxy_hide_header x-amz-request-id;
-  proxy_hide_header x-amz-meta-optimized;
-  proxy_hide_header x-amz-meta-s3cmd-attrs;
+    include include/hide_s3_headers;
 
     proxy_set_header Host snippets.gosquared.com;
     proxy_hide_header Cache-Control;
@@ -31,6 +20,5 @@ server {
     set $backend_upstream "http://snippets.gosquared.com.s3-website-us-east-1.amazonaws.com";
     resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
-
   }
 }

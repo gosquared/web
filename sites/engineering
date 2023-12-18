@@ -1,9 +1,6 @@
 server {
-  listen 80;
   server_name engineering.gosquared.com;
 
-  client_max_body_size 16M;
-  keepalive_timeout 10;
   set $blog https://www.gosquared.com/blog;
   rewrite '^/tag/(.+)$' $blog/tag/$1 permanent;
   rewrite '^/author/(.+)$' $blog/author/$1 permanent;

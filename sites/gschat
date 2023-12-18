@@ -1,9 +1,6 @@
 server {
-  listen 80;
   server_name gs-chat.com *.gs-chat.com;
 
-  client_max_body_size 16M;
-  keepalive_timeout 10;
   rewrite '^/rn/([0-9]+|GSN-[0-9]{6,7}-[A-Z])/(.+)$' https://www.gosquared.com/?utm_campaign=live-chat&utm_medium=widget-notification&utm_source=$1&n=$2 permanent;
   rewrite '^/rn/([0-9]+|GSN-[0-9]{6,7}-[A-Z])' https://www.gosquared.com/?utm_campaign=live-chat&utm_medium=widget-notification&utm_source=$1 permanent;
   rewrite '^/r/([0-9]+|GSN-[0-9]{6,7}-[A-Z])/(.+)$' https://www.gosquared.com/live-chat/?utm_campaign=live-chat&utm_medium=widget&utm_source=$1&n=$2 permanent;

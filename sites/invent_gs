@@ -1,9 +1,6 @@
 server {
-  listen 80;
   server_name invent.gs *.invent.gs reinvent.gosquared.net;
 
-  client_max_body_size 16M;
-  keepalive_timeout 10;
   rewrite '^/a4d-dashboard' https://d2vc5si2vfq3bx.cloudfront.net/dashboard.html permanent;
   rewrite '^/a4d-game' https://d2vc5si2vfq3bx.cloudfront.net/index.html permanent;
   rewrite '^/a4d.zip' https://d5q743feekrro.cloudfront.net/awsfordata.zip permanent;

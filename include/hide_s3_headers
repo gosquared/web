@@ -1,0 +1,6 @@
+proxy_ignore_headers Set-Cookie Expires Cache-Control;
+proxy_hide_header Last-Modified;
+proxy_hide_header x-amz-id-2;
+proxy_hide_header x-amz-request-id;
+proxy_hide_header x-amz-meta-optimized;
+proxy_hide_header x-amz-meta-s3cmd-attrs;

@@ -1,34 +1,22 @@
 server {
-  listen 80;
   server_name alpha.gosquared.com;
 
-  client_max_body_size 16M;
-  keepalive_timeout 10;
   set $root_host alpha.gosquared.com;
   rewrite ^/developer/?$ https://$root_host/docs/ permanent;
 
   location  ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
-
     proxy_set_header x-forwarded-proto https;
     proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
     proxy_pass http://neo_alpha;
-
   }
 
   location / {
+    include include/hide_s3_headers;
 
-  proxy_ignore_headers Set-Cookie Expires Cache-Control;
-  proxy_hide_header Last-Modified;
-  proxy_hide_header x-amz-id-2;
-  proxy_hide_header x-amz-request-id;
-  proxy_hide_header x-amz-meta-optimized;
-  proxy_hide_header x-amz-meta-s3cmd-attrs;
-
-
-  proxy_hide_header Access-Control-Allow-Origin;
-  proxy_hide_header Access-Control-Allow-Methods;
-  proxy_hide_header Access-Control-Allow-Headers;
-  proxy_hide_header Access-Control-Allow-Credentials;
+    proxy_hide_header Access-Control-Allow-Origin;
+    proxy_hide_header Access-Control-Allow-Methods;
+    proxy_hide_header Access-Control-Allow-Headers;
+    proxy_hide_header Access-Control-Allow-Credentials;
 
     proxy_set_header Host alpha.gosquared.com;
     error_page 403 =404 /error-4xx.html;
@@ -36,6 +24,5 @@ server {
     set $backend_upstream "http://alpha.gosquared.com.s3-website-us-east-1.amazonaws.com";
     resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
-
   }
 }
