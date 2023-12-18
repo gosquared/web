@@ -18,7 +18,6 @@ server {
     add_header Cache-Control "public, max-age=600";
 
     set $backend_upstream "http://snippets.gosquared.com.s3-website-us-east-1.amazonaws.com";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 }

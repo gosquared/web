@@ -192,7 +192,6 @@ server {
     error_page 403 =404 /error-4xx.html;
 
     set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 
@@ -207,7 +206,6 @@ server {
     rewrite ^/.* /error-4xx.html;
 
     set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 
@@ -222,7 +220,6 @@ server {
     rewrite ^/.* /error-5xx.html;
 
     set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 
@@ -250,11 +247,10 @@ server {
     error_page 403 =404 @err404;
 
     set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 
-  location  ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
+  location ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
     gzip off;
     proxy_intercept_errors on;
     proxy_set_header Host $root_host;
@@ -275,7 +271,6 @@ server {
     error_page 500 =500 @err500;
 
     set $backend_upstream "http://6zlbxgmoih.execute-api.us-east-1.amazonaws.com/prod";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 
@@ -291,7 +286,6 @@ server {
     proxy_intercept_errors on;
 
     set $backend_upstream "https://gosquared.github.io";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 
@@ -305,7 +299,6 @@ server {
     error_page 403 =404 @err404;
 
     set $backend_upstream "http://gosquared.com.s3-website-us-east-1.amazonaws.com";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 }

@@ -1,7 +1,7 @@
 server {
   server_name ~^(?<branch>.*).branch.gosquared.net;
 
-  location  ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
+  location ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
     proxy_set_header x-forwarded-proto https;
     proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
     proxy_pass http://neo;
@@ -13,7 +13,6 @@ server {
     error_page 403 =404 /error-4xx.html;
 
     set $backend_upstream "http://site-branches.s3-website-us-east-1.amazonaws.com/$branch$uri";
-    resolver 10.0.0.2 8.8.8.8 ipv6=off;
     proxy_pass $backend_upstream;
   }
 }
