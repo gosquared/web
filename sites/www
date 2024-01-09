@@ -86,7 +86,6 @@ server {
   rewrite ^/developer/api/account/v1/ignoredVisitors(.*)$ https://$root_host/developer/api/account/v1/blocked$1 permanent;
   rewrite ^/features/ecommerce(.*)$ https://$root_host/software/ecommerce$1 permanent;
   rewrite ^/features/visitors(.*)$ https://$root_host/software/people$1 permanent;
-  rewrite ^/features.*$ https://$root_host/ permanent;
   rewrite ^/resources/drupal-module/ https://$root_host/support/articles/564411-drupal-module-for-gosquared permanent;
   rewrite ^/resources/joomla/ https://$root_host/support/articles/564070-joomla-gosquared-installation permanent;
   rewrite ^/resources/jquery-plugin/ https://$root_host/docs/ permanent;
