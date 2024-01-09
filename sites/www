@@ -169,14 +169,39 @@ server {
   rewrite ^/gdpr(?!-ready) https://$root_host/gdpr-ready/ permanent;
   rewrite ^/intercalculator https://$root_host/switch/intercom-calculator/ permanent;
   rewrite ^/indie-hacker-calculator https://$root_host/mrr-calculator/ permanent;
-  rewrite ^/customer-engagement/$ https://www.ecosend.io;
-  rewrite ^/customer-engagement/playbooks/ https://www.ecosend.io;
-  rewrite ^/customer-engagement/plans/ https://www.ecosend.io/plans;
-  rewrite ^/customer-engagement/customers/ https://$root_host/customers/;
-  rewrite ^/join/grow/ https://$root_host/join/ecosend/;
-  rewrite ^/lead-forms/ https://www.ecosend.io/features/forms;
-  rewrite ^/free-email-builder https://www.ecosend.io/free-email-builder;
-  rewrite ^/campaign-url-builder https://www.ecosend.io/campaign-url-builder;
+  rewrite ^/customer-engagement/$ https://ecosend.io permanent;
+  rewrite ^/customer-engagement/playbooks/ https://ecosend.io permanent;
+  rewrite ^/customer-engagement/plans/ https://ecosend.io/plans permanent;
+  rewrite ^/customer-engagement/customers/ https://$root_host/customers/ permanent;
+  rewrite ^/join/grow/ https://$root_host/join/ecosend/ permanent;
+  rewrite ^/lead-forms/ https://ecosend.io/features/forms permanent;
+  rewrite ^/free-email-builder https://ecosend.io/free-email-builder permanent;
+  rewrite ^/campaign-url-builder https://ecosend.io/campaign-url-builder permanent;
+
+  # Simplification in 2024
+  rewrite ^/analytics/plans https://$root_host/plans/ permanent;
+  rewrite ^/analytics/accuracy https://$root_host/accuracy/ permanent;
+  rewrite ^/analytics/features https://$root_host/features/ permanent;
+  rewrite ^/analytics https://$root_host/ permanent;
+  rewrite ^/acquire https://$root_host/ permanent;
+  rewrite ^/act-now https://$root_host/ permanent;
+  rewrite ^/apps https://$root_host/ permanent;
+  rewrite ^/close https://$root_host/ permanent;
+  rewrite ^/customer-data-hub https://ecosend.io/features/ permanent;
+  rewrite ^/delight https://$root_host/ permanent;
+  rewrite ^/enterprise https://$root_host/ permanent;
+  rewrite ^/leads https://$root_host/ permanent;
+  rewrite ^/learn-more/agencies https://$root_host/ permanent;
+  rewrite ^/learn-more/software https://$root_host/ permanent;
+  rewrite ^/live-chat https://$root_host/ permanent;
+  rewrite ^/marketing-automation https://ecosend.io/features/ permanent;
+  rewrite ^/switch https://$root_host/ permanent;
+  rewrite ^/video-demo https://$root_host/ permanent;
+  rewrite ^/webinar https://$root_host/ permanent;
+  rewrite ^/integrations/(shopify|salesforce|google-data-studio) https://$root_host/integrations/ permanent;
+  rewrite ^/statusboard https://$root_host/integrations/ permanent;
+
+
   error_page 400 403 404 405 @err404;
   error_page 500 502 503 504 @err500;
 
