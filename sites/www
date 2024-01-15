@@ -170,6 +170,7 @@ server {
   rewrite ^/indie-hacker-calculator https://$root_host/mrr-calculator/ permanent;
   rewrite ^/customer-engagement/$ https://ecosend.io permanent;
   rewrite ^/customer-engagement/playbooks/ https://ecosend.io permanent;
+  rewrite ^/customer-engagement/course/ https://ecosend.io permanent;
   rewrite ^/customer-engagement/plans/ https://ecosend.io/plans permanent;
   rewrite ^/customer-engagement/customers/ https://$root_host/customers/ permanent;
   rewrite ^/join/grow/ https://$root_host/join/ecosend/ permanent;
