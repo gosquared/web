@@ -1,0 +1,6 @@
+server {
+  server_name links.gs *.links.gs;
+
+  rewrite '^/ppt-templater' https://d35ltx7oyynfy6.cloudfront.net/ permanent;
+  return 301 https://www.gosquared.com/;
+}
