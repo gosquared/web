@@ -1,6 +1,6 @@
 server {
   server_name links.gs *.links.gs;
 
-  rewrite '^/ppt-templater' https://dns1nah0uv6li.cloudfront.net/ permanent;
+  rewrite '^/ppt-automater' https://dns1nah0uv6li.cloudfront.net/ permanent;
   return 301 https://www.gosquared.com/;
 }
