@@ -7,7 +7,7 @@ server {
   location ~ ^/(login|logout|reset|home|neo|now|trends|ecommerce|settings|integration|welcome|people|demo|announcements|setup|chat|inbox|_notify|automation|visitors|forms|insights)(/.*)?$ {
     proxy_set_header x-forwarded-proto https;
     proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
-    proxy_pass http://neo_alpha;
+    proxy_pass http://alpha.ec2.gosquared.net:5003;
   }
 
   location / {

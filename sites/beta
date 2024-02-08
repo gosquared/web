@@ -8,7 +8,7 @@ server {
 
     proxy_set_header x-forwarded-proto https;
     proxy_next_upstream error timeout http_500 http_502 http_503 http_504;
-    proxy_pass http://neo_beta;
+    proxy_pass http://beta.ec2.gosquared.net:5003;
   }
 
   location / {
