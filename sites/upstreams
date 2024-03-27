@@ -1,5 +1,5 @@
 upstream neo {
-  server neo-3.ec2.gosquared.net:5003 max_fails=3 fail_timeout=30s;
-  server neo-4.ec2.gosquared.net:5003 max_fails=3 fail_timeout=30s;
+  server neo-1.ec2.gosquared.net:5003 max_fails=3 fail_timeout=30s;
+  server neo-2.ec2.gosquared.net:5003 max_fails=3 fail_timeout=30s;
   keepalive 4;
 }
