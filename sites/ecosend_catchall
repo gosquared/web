@@ -1,0 +1,5 @@
+server {
+  server_name *.ecosend.io;
+
+  return 301 https://ecosend.io;
+}

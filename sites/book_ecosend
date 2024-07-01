@@ -1,0 +1,6 @@
+server {
+  server_name book.ecosend.io;
+
+  rewrite '^/demo' https://calendar.app.google/AbLoc5vdHGhNh9J37 permanent;
+  return 301 https://ecosend.io;
+}
