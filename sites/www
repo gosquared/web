@@ -168,11 +168,7 @@ server {
   rewrite ^/gdpr(?!-ready) https://$root_host/gdpr-ready/ permanent;
   rewrite ^/intercalculator https://$root_host/switch/intercom-calculator/ permanent;
   rewrite ^/indie-hacker-calculator https://$root_host/mrr-calculator/ permanent;
-  rewrite ^/customer-engagement/$ https://ecosend.io permanent;
-  rewrite ^/customer-engagement/playbooks/ https://ecosend.io permanent;
-  rewrite ^/customer-engagement/course/ https://ecosend.io permanent;
-  rewrite ^/customer-engagement/plans/ https://ecosend.io/plans permanent;
-  rewrite ^/customer-engagement/customers/ https://$root_host/customers/ permanent;
+  rewrite ^/customer-engagement https://ecosend.io permanent;
   rewrite ^/join/grow/ https://$root_host/join/ecosend/ permanent;
   rewrite ^/lead-forms/ https://ecosend.io/features/forms permanent;
   rewrite ^/free-email-builder https://ecosend.io/free-email-builder permanent;
