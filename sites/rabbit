@@ -1,9 +1,0 @@
-server {
-  server_name rabbitmq-admin-2.gosquared.com;
-
-  add_header Strict-Transport-Security max-age=31536000;
-
-  location / {
-    proxy_pass http://rabbit.ec2.gosquared.net:15672;
-  }
-}
